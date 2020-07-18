@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <h2>{{ message }}</h2>
+            <h2>{{ data.value }}</h2>
+        </div>
+        <hr>
+        <div>
+            <h2>{{ data.value }}</h2>
+            <button @click='fuc1' >增加</button>
+        </div>
+        <hr>
+        <div>
+            <h4>{{ message }}</h4>
+            <input type="text" v-model='message'>
+        </div>
+        <hr>
+        <div>
+            <h2 v-show='isShow'>{{ message }}</h2>
+            <h2 v-if='isShow'>{{ message }}</h2>
+            <img :src='imgSrc'>
+            <button @click='toggleIsShow'>修改isShow</button>
+        </div>
+        <hr>
+        <ul>
+            <li v-for='i in arr'>
+                hello {{ i }}
+            </li>
+            <li v-for='(item,index) in arr'>
+                {{item}}---{{index}}
+            </li>
+        </ul>
+        <hr>
+        <div>
+            <input type="text" @keyup.enter='sayHi'>
+        </div>
+    </div>
+
+</body>
+<script>
+    var app1 = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue',
+            data: {'value': 1},
+            arr: [1,2,3,4,5],
+            isShow: true,
+            imgSrc: 'https://i0.hdslb.com/bfs/archive/22650682fd25a4a5aa96dd9ef53190c6b8d54912.png',
+
+        },
+        methods: {
+            fuc1:function(){
+                this.data.value++
+            },
+            toggleIsShow:function(){
+                this.isShow = !this.isShow
+            },
+            sayHi:function(){
+                alert('Hi')
+            },
+        }
+    });
+</script>
+</html>
