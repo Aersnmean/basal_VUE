@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="number" v-model = "input1">
+        <select  v-model="selected">
+            <option value="0">+</option>
+            <option value="1">-</option>
+            <option value="2">*</option>
+            <option value="3">/</option>
+        </select>
+        <input type="number" v-model = "input2">
+        <button v-on:click="onclick">=</button>
+        <span>{{ sum }}</span>
+    </div>
+    <script src = "https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                selected:'',
+                input1:'',
+                input2:'',
+                sum:''
+            },
+            methods:{
+                onclick(){
+                    if(this.selected=='0'){  
+                    this.sum=(this.input1-0)+ (this.input2-0)  
+                }  
+                    if(this.selected=='1'){  
+                    this.sum=eval(this.input1- this.input2)
+                }  
+                    if(this.selected=='2'){  
+                    this.sum=eval(this.input1* this.input2)  
+                }  
+                    if(this.selected=='3'){  
+                    this.sum=eval(this.input1/this.input2)  
+                } 
+
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
