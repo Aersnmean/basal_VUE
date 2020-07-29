@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+ 
+  <script src = "https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <style rel="stylesheet">
+    table{
+      width: 600px;
+      height: 200px;
+      margin: 0 auto;
+      border: 1px solid darkgray;
+    }
+    table tr td{
+      width: 20%;
+      text-align: center;
+    }
+    h2{
+      position: relative;
+      left: 420px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <tr>
+        <th>商品序号</th>
+        <th>商品型号</th>
+        <th>商品价格</th>
+        <th>商品数量</th>
+        <th>清空</th>
+      </tr>
+      <tr v-for="shop in shops">
+        <td>{{ shop.id }}</td>
+        <td>{{ shop.size }}</td>
+        <td>{{ shop.price }}</td>
+        <td>
+          <button @click="shop.count-=1" v-bind:disabled="shop.count == 0">-</button>
+          {{ shop.count }}
+          <button @click="shop.count+=1">+</button>
+        </td>
+        <td>
+          <button @click="shop.count=0">清空</button>
+        </td>
+      </tr>
+    </table>
+    <h2>${{ totalPrice() }}</h2>
+  </div>
+    <script type="text/javascript">
+      new Vue({
+        el : '#app',
+        data : {
+          shops : [
+            {
+              id : 1,
+              size : "apple",
+              price : 4000,
+              count : 1
+            },
+            {
+              id : 2,
+              size : "banana",
+              price : 5000,
+              count : 1
+            },
+            {
+              id : 3,
+              size : "orange",
+              price : 6000,
+              count : 1
+            }
+          ]
+        },
+        methods : {
+          totalPrice : function(){
+            var total = 0;
+            for(var i = 0,len = this.shops.length;i<len;i++){
+              total += this.shops[i].count*this.shops[i].price;
+            }
+            return total;
+          }
+        }
+      })
+    </script>
+</body>
+</html>
